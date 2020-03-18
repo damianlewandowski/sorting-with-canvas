@@ -11,10 +11,10 @@ async function action(j: number, bars: Bar[], canvas: Canvas) {
 
   if (shouldSwap) {
     bars[j].swapValues(bars[j + 1]);
-    canvas.drawBars();
   }
   bars[j].color = "steelblue";
   bars[j + 1].color = "steelblue";
+  canvas.drawBars();
 }
 
 export async function bubblesort(bars: Bar[], canvas: any) {
