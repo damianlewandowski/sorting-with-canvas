@@ -26,8 +26,11 @@ class Canvas {
   }
 
   set bars(value: Bar[]) {
-    console.log("hello");
     this._bars = value;
+  }
+
+  get bars() {
+    return this._bars;
   }
 
   public drawBars() {

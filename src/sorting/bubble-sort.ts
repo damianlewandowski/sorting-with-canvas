@@ -1,6 +1,7 @@
 import Bar from "../canvas/Bar";
 import Canvas from "../canvas/Canvas";
 import waitAtSpeed from "../util/wait-at-speed";
+import GLOBAL_OPTIONS from "../globals";
 
 async function action(j: number, bars: Bar[], canvas: Canvas) {
   const shouldSwap = bars[j].isBigger(bars[j + 1]);
@@ -17,14 +18,16 @@ async function action(j: number, bars: Bar[], canvas: Canvas) {
   canvas.drawBars();
 }
 
-export async function bubblesort(bars: Bar[], canvas: any) {
-  const length = bars.length;
+export async function bubblesort(canvas: any) {
+  const length = canvas.bars.length;
 
   for (let i = 0; i < length; i++) {
     for (let j = 0; j < length - i - 1; j++) {
-      await waitAtSpeed(() => action(j, bars, canvas));
+      if (!GLOBAL_OPTIONS.IS_RUNNING) return canvas.bars;
+
+      await waitAtSpeed(() => action(j, canvas.bars, canvas));
     }
   }
 
-  return bars;
+  return canvas.bars;
 }
