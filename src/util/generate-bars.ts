@@ -1,5 +1,5 @@
 import Bar from "../canvas/Bar";
-import { randomInt } from "../utils";
+import { randomInt } from "./utils";
 
 export default (ctx: CanvasRenderingContext2D, amount: number) => {
   const x = 0;

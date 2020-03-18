@@ -1,4 +1,4 @@
-import { GLOBAL_OPTIONS } from "./globals";
+import GLOBAL_OPTIONS from "./globals";
 
 class DomNodes {
   private _slider: HTMLElement;
