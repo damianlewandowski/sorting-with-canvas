@@ -1,4 +1,5 @@
 import Logger from "../util/Logger";
+import { HEIGHT } from "../constants";
 
 class Bar {
   // Drawing
@@ -7,6 +8,7 @@ class Bar {
   private _width: number;
   private _color: string;
   private _ctx: CanvasRenderingContext2D;
+  private _heightMultiplier = 3;
 
   // Sorting
   private _value: number;
@@ -43,20 +45,12 @@ class Bar {
     this._x = value;
   }
 
-  get y(): number {
-    return this._y;
-  }
-
   set y(value: number) {
     this._y = value;
   }
 
-  get width(): number {
-    return this._width;
-  }
-
-  set width(value: number) {
-    this._width = value;
+  get y() {
+    return this._y;
   }
 
   get color(): string {
@@ -75,16 +69,30 @@ class Bar {
 
   public swapValues(bar: Bar) {
     const tempVal = bar.value;
+    const tempY = bar.y;
 
     bar.value = this._value;
+    bar.y = this._y;
+
     this._value = tempVal;
+    this._y = tempY;
   }
 
   public draw() {
     this._ctx.save();
     this._ctx.fillStyle = this.color;
-    this._ctx.fillRect(this.x, this.y, this.width, this._value * 2);
-    this._ctx.strokeText("" + this._value, this._x, this._value * 2 + 10);
+    this._ctx.fillRect(
+      this._x,
+      this._y,
+      this._width,
+      this._value * this._heightMultiplier
+    );
+    this._ctx.textAlign = "center";
+    this._ctx.strokeText(
+      "" + this._value,
+      this._x + this._width / 2,
+      HEIGHT - this.value * this._heightMultiplier - 5
+    );
     this._ctx.restore();
   }
 }
