@@ -18,7 +18,7 @@ async function action(j: number, bars: Bar[], canvas: Canvas) {
   canvas.drawBars();
 }
 
-export async function bubblesort(canvas: any) {
+export async function bubblesort(canvas: Canvas): Promise<Bar[]> {
   const length = canvas.bars.length;
 
   for (let i = 0; i < length; i++) {

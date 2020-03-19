@@ -1,5 +1,5 @@
 import Canvas from "./canvas/Canvas";
-import { WIDTH, HEIGHT } from "./constants";
+import { WIDTH, HEIGHT, SortingAlgorithms } from "./constants";
 import generateBars from "./util/generate-bars";
 import { bubblesort } from "./sorting/bubble-sort";
 import DomNodes from "./DomNodes";

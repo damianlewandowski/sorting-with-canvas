@@ -1,7 +1,9 @@
 import GLOBAL_OPTIONS from "./globals";
 import Canvas from "./canvas/Canvas";
-import { bubblesort } from "./sorting/bubble-sort";
 import generateBars from "./util/generate-bars";
+import { selectionSort } from "./sorting/selection-sort";
+import { SortingAlgorithms } from "./constants";
+import { bubblesort } from "./sorting/bubble-sort";
 
 class DomNodes {
   private _canvas: Canvas;
@@ -14,6 +16,8 @@ class DomNodes {
   private _barsValue: HTMLElement;
   private _barsSlider: HTMLElement;
 
+  private _algorithmsSelect: HTMLElement;
+
   constructor(canvas: Canvas) {
     this._canvas = canvas;
 
@@ -25,9 +29,23 @@ class DomNodes {
     this._barsSlider = document.getElementById("bars-range");
     this._barsValue = document.getElementById("bars-value");
 
+    this._algorithmsSelect = document.getElementById("algorithms");
+
     this._speedSlider.onchange = this.assignSpeed;
     this._startBtn.onclick = this.handleStartSorting;
     this._barsSlider.onchange = this.assignBarsAmount;
+    this._algorithmsSelect.onchange = this.assignCurrentAlgorithm;
+  }
+
+  private chooseSortingAlgorithm(currentlyPickedAlgorithm: SortingAlgorithms) {
+    switch (currentlyPickedAlgorithm) {
+      case SortingAlgorithms.Bubble:
+        return bubblesort;
+      case SortingAlgorithms.Selection:
+        return selectionSort;
+      default:
+        return bubblesort;
+    }
   }
 
   private handleStartSorting = () => {
@@ -35,7 +53,10 @@ class DomNodes {
       GLOBAL_OPTIONS.IS_RUNNING = false;
     } else {
       GLOBAL_OPTIONS.IS_RUNNING = true;
-      bubblesort(this._canvas);
+      const sort = this.chooseSortingAlgorithm(
+        GLOBAL_OPTIONS.CURRENT_ALGORITHM
+      );
+      sort(this._canvas);
     }
   };
 
@@ -54,6 +75,15 @@ class DomNodes {
     GLOBAL_OPTIONS.BARS_AMOUNT = amount;
     this._canvas.bars = generateBars(this._canvas.ctx, amount);
     this._canvas.drawBars();
+
+    this._barsValue.innerHTML = amount;
+  };
+
+  private assignCurrentAlgorithm = (event: Event) => {
+    GLOBAL_OPTIONS.IS_RUNNING = false;
+    // @ts-ignore
+    const value: string = this._algorithmsSelect.value;
+    GLOBAL_OPTIONS.CURRENT_ALGORITHM = SortingAlgorithms[value]; //this._algorithmsSelect.value;
   };
 }
 
