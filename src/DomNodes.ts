@@ -4,6 +4,8 @@ import generateBars from "./util/generate-bars";
 import { selectionSort } from "./sorting/selection-sort";
 import { SortingAlgorithms } from "./constants";
 import { bubblesort } from "./sorting/bubble-sort";
+import { quickSort } from "./sorting/quick-sort";
+import Logger from "./util/Logger";
 
 class DomNodes {
   private _canvas: Canvas;
@@ -38,13 +40,18 @@ class DomNodes {
   }
 
   private chooseSortingAlgorithm(currentlyPickedAlgorithm: SortingAlgorithms) {
+    Logger.info(
+      `Current sorting algorithm: ${SortingAlgorithms[currentlyPickedAlgorithm]} Sort`
+    );
     switch (currentlyPickedAlgorithm) {
       case SortingAlgorithms.Bubble:
         return bubblesort;
       case SortingAlgorithms.Selection:
         return selectionSort;
+      case SortingAlgorithms.Quick:
+        return quickSort;
       default:
-        return bubblesort;
+        return quickSort;
     }
   }
 

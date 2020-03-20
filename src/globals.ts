@@ -1,4 +1,4 @@
-import {SortingAlgorithms} from "./constants";
+import { SortingAlgorithms } from "./constants";
 
 export default {
   SPEED: 1,

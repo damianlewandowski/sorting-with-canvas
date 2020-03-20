@@ -3,5 +3,6 @@ export const HEIGHT = 600;
 
 export enum SortingAlgorithms {
   Bubble,
-  Selection
+  Selection,
+  Quick
 }
