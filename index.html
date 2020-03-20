@@ -1,1 +1,51 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><link rel="stylesheet" href="/src.c96dbb90.css"><title>Sorting Animations</title></head><body> <div class="container"> <div class="selectors"> <div> <label> Speed <input type="range" name="speed-range" id="speed-range" min="1" max="100" value="5"> </label> <span id="speed-value">1</span> </div> <div> <label> Bars <input type="range" name="speed-range" id="bars-range" min="1" max="100" value="15"> </label> <span id="bars-value">15</span> <button id="reset-bars-btn">Reset</button> </div> <div> <select id="algorithms"> <option value="Bubble">Bubble Sort</option> <option value="Selection">Selection Sort</option> <option value="Quick">Quick Sort</option> </select> </div> <button id="start-btn">Start / Stop</button> </div> <canvas id="canvas"></canvas> </div> <script>window.setImmediate=window.setTimeout;</script> <script src="/src.6cafec7e.js"></script> </body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/sorting-with-canvas/src.9ad09f98.css">
+    <title>Sorting Animations</title>
+  <script src="/sorting-with-canvas/src.9ad09f98.js"></script></head>
+
+  <body>
+
+    <div class="container">
+      <div class="selectors">
+        <div>
+          <label>
+            Speed
+            <input type="range" name="speed-range" id="speed-range" min="1" max="100" value="5">
+          </label>
+          <span id="speed-value">1</span>
+        </div>
+
+        <div>
+          <label>
+            Bars
+            <input type="range" name="speed-range" id="bars-range" min="1" max="100" value="15">
+          </label>
+          <span id="bars-value">15</span>
+          <button id="reset-bars-btn">Reset</button>
+
+        </div>
+
+        <div>
+          <select id="algorithms">
+            <option value="Bubble">Bubble Sort</option>
+            <option value="Selection">Selection Sort</option>
+            <option value="Quick">Quick Sort</option>
+          </select>
+        </div>
+
+        <button id="start-btn">Start / Stop</button>
+
+      </div>
+
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <script>window.setImmediate = window.setTimeout;</script>
+    <script src="/sorting-with-canvas/src.77de5100.js"></script>
+  </body>
+</html>
