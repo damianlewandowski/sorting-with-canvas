@@ -17,6 +17,7 @@ class DomNodes {
 
   private _barsValue: HTMLElement;
   private _barsSlider: HTMLElement;
+  private _resetBarsBtn: HTMLElement;
 
   private _algorithmsSelect: HTMLElement;
 
@@ -30,12 +31,14 @@ class DomNodes {
 
     this._barsSlider = document.getElementById("bars-range");
     this._barsValue = document.getElementById("bars-value");
+    this._resetBarsBtn = document.getElementById("reset-bars-btn");
 
     this._algorithmsSelect = document.getElementById("algorithms");
 
     this._speedSlider.onchange = this.assignSpeed;
     this._startBtn.onclick = this.handleStartSorting;
     this._barsSlider.onchange = this.assignBarsAmount;
+    this._resetBarsBtn.onclick = this.resetBars;
     this._algorithmsSelect.onchange = this.assignCurrentAlgorithm;
   }
 
@@ -84,6 +87,16 @@ class DomNodes {
     this._canvas.drawBars();
 
     this._barsValue.innerHTML = amount;
+  };
+
+  private resetBars = (event: Event) => {
+    Logger.info("Resetting bars");
+    GLOBAL_OPTIONS.IS_RUNNING = false;
+    this._canvas.bars = generateBars(
+      this._canvas.ctx,
+      GLOBAL_OPTIONS.BARS_AMOUNT
+    );
+    this._canvas.drawBars();
   };
 
   private assignCurrentAlgorithm = (event: Event) => {
